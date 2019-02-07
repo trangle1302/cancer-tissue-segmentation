@@ -1,5 +1,7 @@
 # cancer-tissue-segmentation
-Cancer Tissue Segmentation
+## Cancer Tissue Segmentation
+
+Part of CONTRA: Agile Bioinformatics for Agile Science (Krakow, 2-8 February 2018) organized by Ardigen
 
 The goal of this project is segmenting histopathology images to identify cancer lesions.
 
