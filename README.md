@@ -14,16 +14,19 @@ Model: We will implement two models:
 
 
 Tasks: 
-Phase 1: Literature search (2 weeks, next meeting: 21/02/2019)
+Phase 1: Literature search (3 weeks, meeting: 28/02/2019)
 Literature study of available methods -> written report
 
-Phase 2: Data preparation and processing (3 weeks, meeting: )
+Phase 2: Data preparation and processing (DONE, as we decided to use camelyon16 on Kaggle)
 For camelyon16: already in 220,025 patches of 32x32px, only binary label, no mask https://www.kaggle.com/c/histopathologic-cancer-detection/data
 For camelyon17: Download, find suitable storage (HPC/allowed access or AWS student instant, free?) that's assessible remotely
 https://camelyon17.grand-challenge.org/Data/
 
-Phase 3: Model implementation (4 weeks, meeting: )
-Data augmentation (packages
+
+Phase 3: Model implementation (2 weeks, meeting: 14/3/2019)
+(Continute) Literature study of available methods -> written report (all 3)
+Publish augmentation and model (nasnet, try other architectures as well) on github (Trang)
+Code review (Reda&Ethan)
 Segmentation with lesion annotation: one of the winner's solutions (1 in 3 publications provided) 
 Weakly labeled semantic segmentation (binary label): Attention net, Unet
 
