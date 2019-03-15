@@ -23,12 +23,18 @@ For camelyon17: Download, find suitable storage (HPC/allowed access or AWS stude
 https://camelyon17.grand-challenge.org/Data/
 
 
-Phase 3: Model implementation (2 weeks, meeting: 14/3/2019)
+Phase 3: Model implementation (2 weeks, meeting: 15/3/2019)
 (Continute) Literature study of available methods -> written report (all 3)
 Publish augmentation and model (nasnet, try other architectures as well) on github (Trang)
-Code review (Reda&Ethan)
+Code review (Reda&Ethan, delayed to next stage after the code pipeline is more complete)
 Segmentation with lesion annotation: one of the winner's solutions (1 in 3 publications provided) 
 Weakly labeled semantic segmentation (binary label): Attention net, Unet
+
+Next meeting 29/3/2019
+Trang: implement more models, try MCOF if possible, put comments into code for review later
+Ethan: Combining the 3 literature review into final report format, download images from kaggle and upload into google drive for Colab
+Reda: investigate the possibility of using Nextflow to elevate the multiple model ensemble later
+
 
 Phase 4: Data analysis, report writing (3 weeks, meeting: )
 Report:
