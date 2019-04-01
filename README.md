@@ -30,14 +30,22 @@ Code review (Reda&Ethan, delayed to next stage after the code pipeline is more c
 Segmentation with lesion annotation: one of the winner's solutions (1 in 3 publications provided) 
 Weakly labeled semantic segmentation (binary label): Attention net, Unet
 
-Next meeting 29/3/2019
-Trang: implement more models, try MCOF if possible, put comments into code for review later
-Ethan: Combining the 3 literature review into final report format, download images from kaggle and upload into google drive for Colab
-Reda: investigate the possibility of using Nextflow to elevate the multiple model ensemble later
+Meeting 01/4/2019
+Trang: implement more models, try MCOF if possible, put comments into code for review later. Update: Tried densenet169 and inceptionv3 in pytorch.
+Ethan: Combining the 3 literature review into final report format, download images from kaggle and upload into google drive for Colab. Update: combined 3 reviews, but need to check the flow and consistency again. Downloaded kaggle images and uploaded on Drive.
+Reda: investigate the possibility of using Nextflow to elevate the multiple model ensemble later. Update: Nextflow is not usable for this project.
+
+
+Meeting 12/4/2019
+Trang: implement Resnet?, put comments. Start code review
+Ethan: Adjust the report. Start code review.
+Reda: Check out unit tests (Dawid's links) and decompressing images from Colab.
 
 
 Phase 4: Data analysis, report writing (3 weeks, meeting: )
 Report:
+EDA: data description, class imbalance
 Performance metrics: FROC, AUC, comparing this to results from state-of-the-art model at the moment
+Unit tests: what are the tests that we conducted? Are they enough? What are other essential tests that was not possible for us to perform? Reason.
 Generate nice images of segmented mask for reports
 Discuss limits/disadvantages of our models
