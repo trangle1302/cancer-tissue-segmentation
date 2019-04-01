@@ -18,7 +18,7 @@ Phase 1: Literature search (3 weeks, meeting: 28/02/2019):
 Literature study of available methods -> written report
 
 Phase 2: Data preparation and processing (DONE, as we decided to use camelyon16 on Kaggle): 
-For camelyon16: already in 220,025 patches of 32x32px, only binary label, no mask https://www.kaggle.com/c/histopathologic-cancer-detection/data
+For camelyon16: already in 220,025 patches of 32x32px, only binary label, no mask https://www.kaggle.com/c/histopathologic-cancer-detection/data. 
 For camelyon17: Download, find suitable storage (HPC/allowed access or AWS student instant, free?) that's assessible remotely
 https://camelyon17.grand-challenge.org/Data/
 
