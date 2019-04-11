@@ -60,15 +60,15 @@ On the NHO-1 independent dataset, the models achieved an AUC of 97.6\%.
 
 \subsection{U-net: Convolutional Networks for Biomedical Image Segmentation \cite{Ronneberger2015UNetCN}}
 
-U-net is a winning deep learning algorithm on the ISBI cell tracking challenge 2015 with overwhelming performance and efficiency in image segmentation. It mainly proposes solutions to three major problems in the field of biomedical image processing.
+U-net was a winning deep learning algorithm on the ISBI cell tracking challenge 2015 with overwhelming performance and efficiency in image segmentation. The authors mainly proposed solutions to three major problems in the field of biomedical image processing.
 
-It is agreeable that a large amount of images is essential to successful deep learning. In practice, however, only a limited, small number of images is usually available, which poses the first problem to the application of deep learning in biomedical image processing. U-net employs data augmentation by applying elastic deformations to the images, which not only enlarges the available data, but has practical meaning that deformation is the most common variation in tissue.
+It is agreeable that a large amount of images is essential to successful deep learning. In practice, however, only a limited, small number of images is usually available, which poses the first problem to the application of deep learning in biomedical image processing. The authors employed data augmentation by applying elastic deformations to the images, which not only enlarged the available data, but had practical meaning that deformation is the most common variation in tissue.
 
-The second problem is that, although convolutional neural networks are commonly used in classification of images, there is a need of segmenting different areas in an image into corresponding classes. In other words, instead of labeling the whole image of a specific class in classification, each pixel in an image is labeled of its corresponding class in segmentation. In order to localize, U-net has a structure of two symmetrical processes, i.e., contraction and expansion. The former is a typical combination of convolutional layers and max pooling layers, which extracts features of the input image while ignoring the information of location. By applying unsampling operators, the latter recovers the information of location, and creates high-resolution segmentation maps. Note that in the contraction process, all the convolutional layers only use the valid part of input data, which means that they are not padded and going to shrink during convolution. Meanwhile, U-net employs a strategy of overlap-tile, where prediction of the segmentation in a specific area in the input image requires a larger area with context information. If there is missing data in the larger area, it will be extrapolated by mirroring. Finally, dropout layers appear at the end of the contraction process performing additional implicit data augmentation.
+The second problem is that, although convolutional neural networks are commonly used in the classification of images, there is a need of segmenting different areas in an image into corresponding classes. In other words, instead of labelling the whole image of a specific class in classification, each pixel in an image was labeled of its corresponding class in segmentation. In order to localize, the authors built a structure of two symmetrical processes, i.e., contraction and expansion. The former was a typical combination of convolutional layers and max pooling layers, which extracted features of the input image while ignoring the information of location. By applying unsampling operators, the latter recovered the information of location, and created high-resolution segmentation maps. Note that in the contraction process, all the convolutional layers only used the valid part of input data, which means that they were not padded and going to shrink during convolution. Meanwhile, The authors employed a strategy of overlap-tile, where prediction of the segmentation in a specific area in the input image required a larger area with context information. If there is missing data in the larger area, it will be extrapolated by mirroring. Finally, dropout layers appeared at the end of the contraction process performing additional implicit data augmentation.
 
-The last challenge is the separation of connecting objects from the same class, which is extensively required in biomedical segmentation problems. U-net suggests the application of a weighed loss $w(\bm{x})$ in \ref{equ_1}, which gives more importance to pixels of separating background between connecting cells in the loss function.
+The last challenge is the separation of connecting objects from the same class, which is extensively required in biomedical segmentation problems. The authors suggested the application of a weighed loss $w(\bm{x})$ in \ref{equ_1}, which gave more importance to pixels of separating background between connecting cells in the loss function.
 
-In the training process, the loss function of U-net is computed by a pixel-wise softmax  over the final feature map:
+In the training process, the loss function of U-net was computed by a pixel-wise softmax over the final feature map:
 
 \begin{equation}
 E = \sum_{\bm{x} \in \Omega} w(\bm{x})log(p_{l(\bm{x})}(\bm{x}))
@@ -87,7 +87,7 @@ where $w_c : \Omega \to \mathbb{R}$ is the weight map to balance the class frequ
 Bridging the gap between high-level semantic (segmentation label) to low-level appearance (image detail) is a challenging task, especially when training with weakly labeled images. Since no pixel-to-pixel mask is available for training, previous models have to rely only on image labels to localize objects. Inaccurate and coarse discriminative object region detection can harm these model performances. To solve this problem, the authors proposed an iterative bottom-up and top-down framework which alternatively expands object regions and optimizes segmentation network. 
 
 \subsubsection{Method}
-The author proposed a Mining Common Object Features (MCOF) framework which contains RegionNet (top-down), PixelNet (bottom-up) and a saliency guide to iteratively produce more refined segmentation mask (details in \ref{fig:ref3}).
+The authors proposed a Mining Common Object Features (MCOF) framework which contains RegionNet (top-down), PixelNet (bottom-up) and a saliency guide to iteratively produce more refined segmentation mask (details in \ref{fig:ref3}).
 
 \begin{figure}[ht]
 	\centering
@@ -97,10 +97,10 @@ The author proposed a Mining Common Object Features (MCOF) framework which conta
 \end{figure}
 
 \paragraph{RegionNet}
-Classification networks can produce initial localization of regions (hypothetically) containing significant common features about objects. After each training round (epoch), the refined object regions (output of PixelNet) are used as training data to predict object masks (new initial localization, higher accuracy).
+Classification networks can produce initial localization of regions (hypothetically) containing significantly common features about objects. After each training round (epoch), the refined object regions (output of PixelNet) are used as training data to predict object masks (new initial localization, higher accuracy).
 
 \paragraph{PixelNet}
-From these initial localizations outputted from RegionNet, common object features were mined. The object regions were expanded with mined features. 
+From these initial localizations output from RegionNet, common object features were mined. The object regions were expanded with mined features. 
 
 \paragraph{Saliency-guide}
 To segment non-discriminative regions, saliency maps are then considered under Bayesian framework to refine the object regions. 
