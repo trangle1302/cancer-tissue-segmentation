@@ -36,10 +36,23 @@ Ethan: Combining the 3 literature review into final report format, download imag
 Reda: investigate the possibility of using Nextflow to elevate the multiple model ensemble later. Update: Nextflow is not usable for this project.
 
 
-# Meeting 12/4/2019 
+# Meeting 17/4/2019 
 Trang: implement Resnet?, put comments. Start code review. 
 Ethan: Adjust the report. Start code review. 
 Reda: Check out unit tests (Dawid's links) and decompressing images from Colab. 
+
+# To-do list until meeting 2/5/2019:
+1. Unit test implementation (Trang marks down the code segments to be tested and Reda write the testing with mltest)
+  a. Output of network if the last layer is probability should be a float between 0-1, if the last layer is logistic then the output should be binary.
+  b. Variables change (input-output, loss, acccuracy)
+  c. Variables don't change (learning rate if fixed learning rate or ReduceLROnPlateau or LRStep don't apply.
+2. Code review: put code into modules (Ethan, Reda), Test if the modular pipeline work on Kaggle by imputing code as dataset (Trang)
+3. Final report: Summarizing background, methods (in reports):
+  a. Background: Question addressed and challenges (identifying tumor vs not, like intro or background of 3 papers we reviewed), Existing methods (methods of the 3 papers). (Ethan)
+  b. Method: Brief intro of all methods we used (InceptionV3, Resnet, NasnetMobile) (Trang or sb else who volunteer!)
+  c. Result: Accuracy of each  model, compare performance with other exisitng participants in the challenge 
+  d. Reference:
+  
 
 
 # Phase 4: Data analysis, report writing (3 weeks, meeting: )
