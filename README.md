@@ -44,8 +44,8 @@ Reda: Check out unit tests (Dawid's links) and decompressing images from Colab.
 # To-do list until meeting 2/5/2019:
 1. Unit test implementation (Trang marks down the code segments to be tested and Reda write the testing with mltest)
   a. Output of network if the last layer is probability should be a float between 0-1, if the last layer is logistic then the output should be binary.
-  b. Variables change (input-output, loss, acccuracy)
-  c. Variables don't change (learning rate if fixed learning rate or ReduceLROnPlateau or LRStep don't apply.
+  b. Variables change (input-output should not be in the same, loss should reduce, acccuracy should increase)
+  c. Variables don't change (learning rate if fixed learning rate or ReduceLROnPlateau or LRStep don't apply).
 2. Code review: put code into modules (Ethan, Reda), Test if the modular pipeline work on Kaggle by imputing code as dataset (Trang)
 3. Final report: Summarizing background, methods (in reports):
   a. Background: Question addressed and challenges (identifying tumor vs not, like intro or background of 3 papers we reviewed), Existing methods (methods of the 3 papers). (Ethan)
@@ -62,3 +62,25 @@ Performance metrics: FROC, AUC, comparing this to results from state-of-the-art 
 Unit tests: what are the tests that we conducted? Are they enough? What are other essential tests that was not possible for us to perform? Reason.
 Generate nice images of segmented mask for reports. 
 Discuss limits/disadvantages of our models. 
+
+
+
+## Last to-do list!!!
+# Github repo
+1. Model code (done)
+2. Code review (Reda & Ethan)
+3. Backlog (done)
+4. Unit test (Reda)
+
+# Report 
+Introduction: Background, problems, literature review of available methods (Ethan & Reda)
+Method: summarise model arch (Trang)
+Results: Accuracy of 4 models + ensembles (Trang)
+Reference (cite at the end!)
+
+# Presentation (ppt slides)
+Introduction: Problem (1-2 slides), Existing method (1 slide) (Ethan & Reda)
+Method: Summarise the 4 models that we used (Resnet50, InceptionV3, Densenet169, Nasnetmobile) (Trang)
+Results: Performance of 4 individual models + ensemble (Trang)
+
+
