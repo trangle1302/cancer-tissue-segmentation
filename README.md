@@ -65,22 +65,22 @@ Discuss limits/disadvantages of our models.
 
 
 
-## Last to-do list!!!
-# Github repo
-1. Model code (done)
-2. Code review (Reda & Ethan)
-3. Backlog (done)
-4. Unit test (Reda)
+# Last to-do list!!!
+## Github repo
+###1. Model code (done)
+###2. Code review (Reda & Ethan)
+###3. Backlog (done)
+###4. Unit test (Reda)
 
-# Report 
-Introduction: Background, problems, literature review of available methods (Ethan & Reda)
-Method: summarise model arch (Trang)
-Results: Accuracy of 4 models + ensembles (Trang)
-Reference (cite at the end!)
+## Report 
+###Introduction: Background, problems, literature review of available methods (Ethan & Reda)
+###Method: summarise model arch (Trang)
+###Results: Accuracy of 4 models + ensembles (Trang)
+###Reference (cite at the end!)
 
 # Presentation (ppt slides)
-Introduction: Problem (1-2 slides), Existing method (1 slide) (Ethan & Reda)
-Method: Summarise the 4 models that we used (Resnet50, InceptionV3, Densenet169, Nasnetmobile) (Trang)
-Results: Performance of 4 individual models + ensemble (Trang)
+###Introduction: Problem (1-2 slides), Existing method (1 slide) (Ethan & Reda)
+###Method: Summarise the 4 models that we used (Resnet50, InceptionV3, Densenet169, Nasnetmobile) (Trang)
+###Results: Performance of 4 individual models + ensemble (Trang)
 
 
