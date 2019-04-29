@@ -235,9 +235,8 @@ for epoch in range(1, n_epochs+1):
         data, target = data.cuda(), target.cuda()
 
         optimizer.zero_grad()
-        output = output[0] + 0.1*output[1]
-        loss = criterion(output[:,0], target.float())
-
+        output = model_conv(data)
+        loss = criterion(output[0][:,0], target.float())+0.2*criterion(output[1][:,0], target.float())
         train_loss.append(loss.item())
         
         a = target.data.cpu().numpy()
@@ -332,8 +331,9 @@ for epoch in range(1, n_epochs+1):
         data, target = data.cuda(), target.cuda()
 
         optimizer.zero_grad()
-        output = output[0] + 0.1*output[1]
-        loss = criterion(output[:,0], target.float())
+        output = model_conv(data)
+        # calculate primary and auxiliary loss separately
+        loss = criterion(output[0][:,0], target.float())+0.2*criterion(output[1][:,0], target.float())
         train_loss.append(loss.item())
         
         a = target.data.cpu().numpy()
