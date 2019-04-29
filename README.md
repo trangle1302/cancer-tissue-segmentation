@@ -82,8 +82,10 @@ Results: Accuracy of 4 models + ensembles (Trang)
 Reference (cite at the end!)
 
 # Presentation (ppt slides)
-###Introduction: Problem (1-2 slides), Existing method (1 slide) (Ethan & Reda)
-###Method: Summarise the 4 models that we used (Resnet50, InceptionV3, Densenet169, Nasnetmobile) (Trang)
-###Results: Performance of 4 individual models + ensemble (Trang)
+Introduction: Problem (1-2 slides), Existing method (1 slide) (Ethan & Reda)
+
+Method: Summarise the 4 models that we used (Resnet50, InceptionV3, Densenet169, Nasnetmobile) (Trang)
+
+Results: Performance of 4 individual models + ensemble (Trang)
 
 
