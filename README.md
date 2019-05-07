@@ -73,7 +73,7 @@ Discuss limits/disadvantages of our models.
 4. Unit test (Reda)
 
 ## Report (.doc)
-Introduction: Background, problems, literature review of available methods (Ethan & Reda)
+Introduction: Background, problems, literature review of available methods (done)
 
 Method: summarise model arch (Trang)
 
