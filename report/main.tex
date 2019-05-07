@@ -49,7 +49,7 @@ During training, the following approaches were tested but did not yield improvem
 	\item Colour normalisation
 \end{itemize}
 
-\paragraph{Tests and results}
+\subsubsection{Results}
 The authors used the Camelyon16 dataset to train and test their model, with 270 pixel-level-annotated slides for training and validation (159 normal and 110 tumour) and 130 slides for testing. Background patches, representing biological tissues other than those of interest (such as adipocytes), were removed to reduce computation. Additionally, NHO-1, a 110-slide dataset, was digitised and labelled in order to be used as an independent evaluation set.
 
 Two metrics were used to evaluate the models: area under the ROC curve (AUC), and FROC which is a metric used to evaluate tumour detection and localisation.
@@ -60,15 +60,18 @@ On the NHO-1 independent dataset, the models achieved an AUC of 97.6\%.
 
 \subsection{U-net: Convolutional Networks for Biomedical Image Segmentation \cite{Ronneberger2015UNetCN}}
 
-U-net was a winning deep learning algorithm on the ISBI cell tracking challenge 2015 with overwhelming performance and efficiency in image segmentation. The authors mainly proposed solutions to three major problems in the field of biomedical image processing.
+\subsubsection{Introduction}
+U-net was a winning deep learning algorithm on the ISBI cell tracking challenge 2015 with overwhelming performance and efficiency on image segmentation. The authors mainly proposed solutions to three major problems in the field of biomedical image processing, and applied u-net to three segmentation tasks to test the performance.
 
+\subsubsection{Methods}
 It is agreeable that a large amount of images is essential to successful deep learning. In practice, however, only a limited, small number of images is usually available, which poses the first problem to the application of deep learning in biomedical image processing. The authors employed data augmentation by applying elastic deformations to the images, which not only enlarged the available data, but had practical meaning that deformation is the most common variation in tissue.
 
-The second problem is that, although convolutional neural networks are commonly used in the classification of images, there is a need of segmenting different areas in an image into corresponding classes. In other words, instead of labelling the whole image of a specific class in classification, each pixel in an image was labeled of its corresponding class in segmentation. In order to localize, the authors built a structure of two symmetrical processes, i.e., contraction and expansion. The former was a typical combination of convolutional layers and max pooling layers, which extracted features of the input image while ignoring the information of location. By applying unsampling operators, the latter recovered the information of location, and created high-resolution segmentation maps. Note that in the contraction process, all the convolutional layers only used the valid part of input data, which means that they were not padded and going to shrink during convolution. Meanwhile, The authors employed a strategy of overlap-tile, where prediction of the segmentation in a specific area in the input image required a larger area with context information. If there is missing data in the larger area, it will be extrapolated by mirroring. Finally, dropout layers appeared at the end of the contraction process performing additional implicit data augmentation.
+The second problem is that, although convolutional neural networks are commonly used in the classification of images, there is a need of segmenting different areas in an image into corresponding classes. In other words, instead of labelling the whole image of a specific class in classification, each pixel in an image was labeled of its corresponding class in segmentation. In order to localize, the authors built a structure of two symmetrical processes, i.e., contraction and expansion. The former was a typical combination of convolutional layers and max pooling layers, which extracted features of the input image while ignoring the information of location. By applying unsampling operators, the latter recovered the information of location, and created high-resolution segmentation maps. Note that in the contraction process, all the convolutional layers only used the valid part of input data, which means that they were not padded and would shrink during convolution. Meanwhile, The authors employed a strategy of overlap-tile, where prediction of the segmentation in a specific area in the input image required a larger area with context information. If there is missing data in the larger area, it will be extrapolated by mirroring. Finally, dropout layers appeared at the end of the contraction process performing additional implicit data augmentation.
 
 The last challenge is the separation of connecting objects from the same class, which is extensively required in biomedical segmentation problems. The authors suggested the application of a weighed loss $w(\bm{x})$ in \ref{equ_1}, which gave more importance to pixels of separating background between connecting cells in the loss function.
 
-In the training process, the loss function of U-net was computed by a pixel-wise softmax over the final feature map:
+\subsubsection{Training setup}
+In the training process, the loss function of u-net was computed by a pixel-wise softmax over the final feature map:
 
 \begin{equation}
 E = \sum_{\bm{x} \in \Omega} w(\bm{x})log(p_{l(\bm{x})}(\bm{x}))
@@ -81,13 +84,18 @@ w(\bm{x}) = w_c{\bm{x}} + w_0 \cdot \exp ( - \frac{(d_1(\bm{x}) + d_2(\bm{x}))^2
 \end{equation}
 where $w_c : \Omega \to \mathbb{R}$ is the weight map to balance the class frequencies, $d_1 : \Omega \to \mathbb{R}$ is the distance to the border of the closest cell and $d_2 : \Omega \to \mathbb{R}$ is the distance to the border of the second closest cell. Setting $w_0 = 10$ and $\sigma = 5$ pixels.
 
+\subsubsection{Results}
+U-net was first applied to the task of the segmentation of neuronal structures in electron microscopic recordings. It achieved a warping error of 0.0003529, the new best score. In terms of rand error, u-net was higher than the model of IDSIA-SCI with 0.0382 to 0.0189, but the latter employed data set which was post-processed, while u-net used the original data set.
+
+The second task u-net was applied to is a cell segmentation task in light microscopic images with two data sets. On the first data set "Phc-U373", u-net achieved an average intersection over union (IOU) of 92\%, while the score of the second best model is 83\%. On the second best data set "DIC-HeLa", u-net acquired an average IOU of 77.5\%, while that of the second best algorithm is 46\%.
+
 \subsection{Weakly-Supervised Semantic Segmentation by Iteratively Mining Common Object Features \cite{Wang2018WeaklySupervisedSS}}
 
-\subsubsection{Background}
-Bridging the gap between high-level semantic (segmentation label) to low-level appearance (image detail) is a challenging task, especially when training with weakly labeled images. Since no pixel-to-pixel mask is available for training, previous models have to rely only on image labels to localize objects. Inaccurate and coarse discriminative object region detection can harm these model performances. To solve this problem, the authors proposed an iterative bottom-up and top-down framework which alternatively expands object regions and optimizes segmentation network. 
+\subsubsection{Introduction}
+Bridging the gap between high-level semantic (segmentation label) to low-level appearance (image detail) is a challenging task, especially when training with weakly labeled images. Since no pixel-to-pixel mask is available for training, previous models have to rely only on image labels to localize objects. Inaccurate and coarse discriminative object region detection can harm the performance of these models. To solve this problem, the authors proposed an iterative bottom-up and top-down framework which alternatively expands object regions and optimizes segmentation network. 
 
-\subsubsection{Method}
-The authors proposed a Mining Common Object Features (MCOF) framework which contains RegionNet (top-down), PixelNet (bottom-up) and a saliency guide to iteratively produce more refined segmentation mask (details in \ref{fig:ref3}).
+\subsubsection{Methods}
+The authors proposed a Mining Common Object Features (MCOF) framework which contains RegionNet (top-down), PixelNet (bottom-up) and a saliency guide to iteratively produce more refined segmentation mask (details in Figure \ref{fig:ref3}).
 
 \begin{figure}[ht]
 	\centering
@@ -108,16 +116,16 @@ To segment non-discriminative regions, saliency maps are then considered under B
 \subsubsection{Experimental setup}
 
 \paragraph{Data}
-Pascal VOC 2012 dataset: 20 class objects + 1 background class. For the segmentation task, it contains 1464 training, 1449 validation and 1456 test images. They used augmented data of 10,582 images as training set.
+Pascal VOC 2012 dataset: 20 class objects + 1 background class. For the segmentation task, it contains 1464 training, 1449 validation and 1456 test images. They used augmented data of 10,582 images as training data set.
 
 \paragraph{Hardware}
 Not mentioned!
 
 \subsubsection{Results}
-The MCOF framework outperformed previous state-of-the-art weakly-supervised semantic segmentation models by large margin. The performance metrics for comparison is mIOU (mean Intersection over Union of all 21 classes), and benchmark models included CCNN, EM-Adapt, MIL-sppxl, STC, DCSM, BFBP, AF-SS, SEC, CBTS and AE-PSL.
+The MCOF framework outperformed previous state-of-the-art weakly-supervised semantic segmentation models by a large margin. The performance metrics for comparison is mIOU (mean Intersection over Union of all 21 classes), and benchmark models including CCNN, EM-Adapt, MIL-sppxl, STC, DCSM, BFBP, AF-SS, SEC, CBTS and AE-PSL.
 
 \paragraph{Conclusion}
-The MCOF framework has two main advantages over previous approached. First, the iterative bottom-up and top-down framework tolerates inaccurate initial object localization. By iteratively mining common object features, the model can progressively produce segmentation masks with improving accuracy. Second, saliency-guided refinement method can allow for non-discriminative regions in initial localization, hence increase segmentation accuracy. This framework established new state-of-the-art performance.
+The MCOF framework has two main advantages over previous approaches. First, the iterative bottom-up and top-down framework tolerates inaccurate initial object localization. By iteratively mining common object features, the model can progressively produce segmentation masks with improving accuracy. Second, saliency-guided refinement method can allow for non-discriminative regions in initial localization, hence increasing segmentation accuracy. This framework proved new state-of-the-art performance.
 
 \newpage
 
