@@ -1,31 +1,32 @@
 import mltest
-import kaggle_scripts_inceptionv3
 import tensorflow as tf
 import numpy as np
+import random
+from kaggle_scripts_inceptionv3 import InceptionV3 
+from cancer_dataset import CancerDataset
 
 def setup():
   mltest.setup()
 
 def inceptionv3_mltest_suite():
-
-  input_tensor = tf.placeholder(tf.float32, (None, 100))
-  label_tensor = tf.placeholder(tf.int32, (None))
-
-  model = kaggle_scripts_inceptionv3.build_model(input_tensor, label_tensor)
-
+  
+  dataset = CancerDataset(datafolder=base_dir+'train/', datatype='train', transform=data_transforms, labels_dict=img_class_dict)
+  train_sampler = SubsetRandomSampler(list(tr.index)) 
+  batch_size = 24
+  num_workers = 0
+  train_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, sampler=train_sampler, num_workers=num_workers)
+  (data, target) = train_loader[1]
+  #data, target = data.cuda(), target.cuda() #if testing in CPU, remove this line
+  model_conv = InceptionV3(pretrained=True).cuda()
+  model_conv.train()
+  output = model_conv(data)
+  random.seed(123)
   feed_dict = {
       input_tensor: np.random.normal(size=(10, 100)),
       label_tensor: np.random.randint((100))
   }
-
+  setup()
   mltest.test_suite(
-      model.prediction,
-      model.train_op,
+      data,
+      output,
       feed_dict=feed_dict)
-
-def test_range():
-  model = kaggle_scripts_inceptionv3.build_model()
-  mltest.test_suite(
-    model.logits,
-    model.train_op,
-    output_range=(0,1))
